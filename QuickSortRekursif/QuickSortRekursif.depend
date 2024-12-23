@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1734937302 source:d:\kuliah semester 3\analisis kompleksitas algoritma\tubes\tubes\tubes\quicksortrekursif\main.cpp
+	<iostream>
+	<string>
+	<ctime>
+
