@@ -1044,7 +1044,6 @@ void merge(Book arr[], Book temp[], int leftStart, int mid, int rightEnd) {
     int j = mid + 1;
     int k = leftStart;
 
-    // Copy the smallest values from either left or right side back to the original array
     while (i <= mid && j <= rightEnd) {
         if (arr[i].title <= arr[j].title) {
             temp[k++] = arr[i++];
@@ -1052,18 +1051,12 @@ void merge(Book arr[], Book temp[], int leftStart, int mid, int rightEnd) {
             temp[k++] = arr[j++];
         }
     }
-
-    // Copy the remaining elements of left side, if any
     while (i <= mid) {
         temp[k++] = arr[i++];
     }
-
-    // Copy the remaining elements of right side, if any
     while (j <= rightEnd) {
         temp[k++] = arr[j++];
     }
-
-    // Copy the merged subarray into the original array
     for (int i = leftStart; i <= rightEnd; i++) {
         arr[i] = temp[i];
     }
@@ -1071,17 +1064,10 @@ void merge(Book arr[], Book temp[], int leftStart, int mid, int rightEnd) {
 
 void mergeSortIterative(Book arr[], int n) {
     Book* temp = new Book[n];
-
-    // Each pass merges subarrays of length 'currSize'
     for (int currSize = 1; currSize < n; currSize *= 2) {
-        // Pick starting point of different subarrays of current size
         for (int leftStart = 0; leftStart < n - 1; leftStart += 2 * currSize) {
-            // Find ending point of left subarray
-            // mid+1 is starting point of right
             int mid = min(leftStart + currSize - 1, n - 1);
             int rightEnd = min(leftStart + 2 * currSize - 1, n - 1);
-
-            // Merge subarrays arr[leftStart...mid] & arr[mid+1...rightEnd]
             merge(arr, temp, leftStart, mid, rightEnd);
         }
     }
